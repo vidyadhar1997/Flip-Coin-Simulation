@@ -28,14 +28,26 @@ do
    elif [ $Head -ge 21 ] && [ $Tail -ge 21 ]
    then
         echo "Match is Tie"
-   break
+
+   for((  i=0; ;i++ ))
+   do
+        toss=$(( RANDOM%2 ))
+   if [ $toss -eq 1 ]
+   then
+        echo "Head" $Head
+        (( Head ++ ))
+   else
+        echo "Tail" $Tail
+        (( Tail++ ))
+   fi
+   if [  $(( $Head - $Tail )) == 2 ]
+   then
+      exit
+   fi
+   done
    fi
 
    (( count ++ ))
 
 done
-
-
-
-
 
